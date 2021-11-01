@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * 
+ *
  * @author mario
  * @since 23-10-2021
  */
@@ -19,12 +19,13 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_user")
 	private Long id;
 
 	@Column(name = "username", nullable = false, unique = true)
 	private String username;
 
-	@Column(name = "password", nullable = false, unique = true)
+	@Column(name = "password_", nullable = false, unique = true)
 	private String password;
 
 	@Column(name = "fullname", nullable = false)
