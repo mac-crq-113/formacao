@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 /**
  *
  * @author mario
@@ -25,6 +29,7 @@ public class User {
 	@Column(name = "username", nullable = false, unique = true)
 	private String username;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(name = "password_", nullable = false, unique = true)
 	private String password;
 
