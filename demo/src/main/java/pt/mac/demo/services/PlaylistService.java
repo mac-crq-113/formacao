@@ -47,36 +47,69 @@ public class PlaylistService {
 	}
 
 	public Playlist savePlaylist(Playlist playlist, CustomUserDetails user) {
-		// se tiver id tem de existir e ser pertencer ao utilizador
+		// se tiver id tem de existir e pertencer ao utilizador
+		if (playlist.getId() != null) {
+			this.findPlaylistById(playlist.getId(), user);
+		}
 
+		// garantir que o owner está preenchido com o utilizador atual
 		playlist.setOwner(user.getEntity());
+
+		// guardar
 		return this.playlistRepo.save(playlist);
 	}
 
 	public void deletePlaylist(Long idPlaylist, CustomUserDetails user) {
+		// verificar se existe e se pertence ao utilizador
 		Playlist playlist = this.findPlaylistById(idPlaylist, user);
+
+		// remover
 		this.playlistRepo.delete(playlist);
 	}
 
+	// entries ////////////////////////////////////////////////////////////////
 	public PlaylistEntry savePlaylistEntry(PlaylistEntry playlistEntry, CustomUserDetails user) {
 		// verificar se a playlist existe e pertence ao utilizador
+		this.findPlaylistById(playlistEntry.getPlaylist().getId(), user);
+		if (playlistEntry.getId() != null) {
+			this.findPlaylistEntry(playlistEntry.getId(), user);
+		}
 
+		// guarar entrada
 		return this.playlistEntryRepo.save(playlistEntry);
 	}
 
 	public List<PlaylistEntry> findAllPlaylistEntries(Long idPlaylist, CustomUserDetails user) {
+		// verificar se a playlist existe e pertence ao utilizador
+		this.findPlaylistById(idPlaylist, user);
+
+		// obter entradas
 		return this.playlistEntryRepo.findAllByPlaylistId(idPlaylist);
 	}
 
 	public PlaylistEntry findPlaylistEntry(Long idEntry, CustomUserDetails user) {
-		// verificar se a playlist existe e pertence ao utilizador
-		return this.playlistEntryRepo.findById(idEntry)
+		// obter a entrada
+		PlaylistEntry entry = this.playlistEntryRepo.findById(idEntry)
 				.orElseThrow(() -> new RuntimeException("Entry " + idEntry + " not found"));
+
+		// verificar se a playlist existe e pertence ao utilizador
+		this.findPlaylistById(entry.getPlaylist().getId(), user);
+
+		// devolver
+		return entry;
 	}
 
 	public void deletePlaylistEntry(Long idEntry, CustomUserDetails user) {
+		// obter a entrada
 		PlaylistEntry entry = this.findPlaylistEntry(idEntry, user);
+
+		// verificar se a playlist existe e pertence ao utilizador
+		this.findPlaylistById(entry.getPlaylist().getId(), user);
+
+		// remover
 		this.playlistEntryRepo.delete(entry);
 	}
+
+	// end entries ////////////////////////////////////////////////////////////
 
 }

@@ -18,8 +18,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/error", "/login", "/token").permitAll().anyRequest().authenticated()
-				.and().formLogin().and().httpBasic().and().cors().and().csrf().disable();
+		http.authorizeRequests().antMatchers("/error", "/login", "/token", "/api/**", "/accounts").permitAll()
+				.anyRequest().authenticated().and().formLogin().and().httpBasic().and().cors().and().csrf().disable();
 	}
 
 //	@Override
@@ -69,3 +69,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //---
 
 // outras linguagens, docker, ...
+//
+//

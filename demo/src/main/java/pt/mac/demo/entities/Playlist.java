@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import pt.mac.demo.DemoViews;
@@ -42,10 +44,13 @@ public class Playlist {
 	@Column(name = "description")
 	private String description;
 
+	@JsonView(DemoViews.Playlist.Basic.class)
+	@JsonProperty(access = Access.READ_ONLY)
 	@ManyToOne
 	@JoinColumn(name = "id_owner", nullable = false)
 	private User owner;
 
+	@JsonProperty(access = Access.READ_ONLY)
 	@JsonView(DemoViews.Playlist.Basic.class)
 	@OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY)
 	private List<PlaylistEntry> entries = new ArrayList<>();
