@@ -1,5 +1,5 @@
 # formacao
 
-Simple Java and Spring Boot backend project to present in some workshops as a introduction to Web Application development.  
+Java and Spring Boot backend project to present in some workshops as a introduction to Web Application development. A simple API to create playlists.
 
 To test it with Insomnia import this [file](https://github.com/mac-crq-113/formacao/blob/main/demo/files/Insomnia-v1.json).
