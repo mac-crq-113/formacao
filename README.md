@@ -2,7 +2,7 @@
 
 Java and Spring Boot backend project to present in some workshops as a introduction to Web Application development. A simple API to create playlists.
 
-### Run
+Run:
 ``
 mvn package
 ``
