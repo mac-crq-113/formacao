@@ -17,3 +17,5 @@ mvn spring-boot:run
 ```
 
 To test it with Insomnia import this [file](https://github.com/mac-crq-113/formacao/blob/main/demo/files/Insomnia-v1.json).
+
+API documentation available at http://localhost:8080/demo/api/index.html, enter /demo/api/docs and click explore.
