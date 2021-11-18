@@ -57,17 +57,3 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		}
 	}
 }
-
-//-- ciclo de desenvolvimento
-//-- modelo cliente/servidor - front end/backend
-//-- metodologias: mvc vs ...
-//-- java e ferramentas
-//-- spring, jpa, hibernate
-//-- principais
-//-- tipos de classes/layers
-
-//---
-
-// outras linguagens, docker, ...
-//
-//
