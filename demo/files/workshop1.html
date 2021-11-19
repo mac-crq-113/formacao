@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JAVA/Spring - Desenvolvimento de Aplicações Web</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/simple.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<div style="text-align: left;margin-left: 100px;">
+						<a href="https://github.com/mac-crq-113/">
+							<img src="logo.png" alt="logo" style="height: 120px; margin: 0 auto 2rem auto; background: transparent;" class="demo-logo">
+						</a>
+					</div>
+					<h3>JAVA/Spring - Desenvolvimento de Aplicações Web</h3>
+					<p>
+						<small>by Mário Cerqueira, <a href="https://www.caso.pt">CASO</a></small>
+					</p>
+					<p style="font-size: 10px;">19-nov-2021</p>
+				</section>
+
+				<section>
+					<h2>Agenda</h2>
+					<p>
+						Criar um <em style="background: black; color: white; padding:0px 5px 0px 5px;">backend</em> em <b>JAVA</b> usando o <em>framework</em> <nobr><b>Spring Boot</b></nobr>.
+					</p>
+					<div class="r-hstack justify-center">
+						<a target="_blank" href="https://medium.com/@MacgyverMartins/o-que-s%C3%A3o-apis-front-end-e-back-end-conceitos-de-desenvolvimento-para-n%C3%A3o-programadores-parte-1-a76d3066b99a">
+						<div data-id="box1" style="background: cyan; width: 50px; height: 50px; margin: 10px; border-radius: 5px;"></div>
+						</a>
+						<a target="_blank" href="https://medium.com/techloop/an-introduction-to-backend-development-and-rest-apis-b1a1a978821f">
+						<div data-id="box2" style="background: magenta; width: 50px; height: 50px; margin: 10px; border-radius: 5px;"></div>
+						</a>
+						<a target="_blank" href="https://spring.io/projects/spring-boot">
+						<div data-id="box3" style="background: yellow; width: 50px; height: 50px; margin: 10px; border-radius: 5px;"></div>
+						</a>
+					</div>
+					<p style="font-size: 14px;">(clica para saber mais)</p>
+					<p style="font-size: 24px; padding-top: 50px;">API | REST | JSON </p>
+				</section>
+				<section>
+					<h2>Backend vs Frontend</h2>
+					<p><img src="arch1.png" alt="Arquitetura" style="" class="arquitetura"></p>
+					<div class="r-hstack justify-center">
+						<a target="_blank" href="https://www.ironhack.com/pt/programacao-web/front-end-vs-back-end-quais-as-diferencas">
+						<div data-id="box1" style="background: cyan; width: 50px; height: 50px; margin: 10px; border-radius: 5px;"></div>
+						</a>
+					</div>
+				</section>
+				<section>
+					<h2>O que vamos usar?</h2>
+					<ul class="fragment">
+					<li>JAVA
+						<br/>
+						<a target="_blank" href="https://adoptopenjdk.net">dowload</a> 
+						ou <a target="_blank" href="https://developer.ibm.com/languages/java/semeru-runtimes/dowload">aqui</a>
+					</li>
+					<li>Spring / Spring Boot / Spring Data
+						<br/>
+						<a target="_blank" href="https://start.spring.io/">gerar um projeto</a>, <a target="_blank" href="https://www.baeldung.com">documentação</a>
+					</li>
+					<li>JPA - Java Persistence API / Hibernate</li>
+					<li>Lombok
+						<br/>
+						<a target="_blank" href="https://projectlombok.org/setup/eclipse">download</a>
+					</li>
+					</ul>
+				</section>
+				<section>
+					<h2>O que vamos usar?</h2>
+					<ul>
+					<li>PostgreSQL (Base de Dados)
+						<br/>
+						<a target="_blank" href="https://www.postgresql.org/download/">dowload</a>
+					</li>
+					<li>Apache Maven (Project Build)
+						<br/>
+						<a target="_blank" href="https://maven.apache.org/download.cgi">dowload</a>
+					</li>
+					<li>Apache Tomcat (Aplication Server)</li>
+					<li>Eclipse (IDE)
+						<br/>
+						<a target="_blank" href="https://spring.io/tools">dowload</a>					
+					</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Projeto</h2>
+					<a href="https://github.com/mac-crq-113/formacao">https://github.com/mac-crq-113/formacao</a>
+				</section>
+
+				<section>
+					<h2>Questões?</h2>
+					
+				</section>
+
+				<section>
+					<h2>Arquitetura</h2>
+					<p style="color: #ff8300;"><b>@RestController | @Service | @Repository | @Entity</b></p>
+					<div class="r-hstack justify-center">
+						<a target="_blank" href="https://www.baeldung.com/spring-component-repository-service">
+						<div data-id="box1" style="background: cyan; width: 50px; height: 50px; margin: 10px; border-radius: 5px;"></div>
+						</a>
+						<a target="_blank" href="https://www.javatpoint.com/spring-boot-architecture">
+						<div data-id="box2" style="background: magenta; width: 50px; height: 50px; margin: 10px; border-radius: 5px;"></div>
+						</a>
+					</div>
+				</section>
+
+				<section>
+					<h2>Modelos de desenvolvimento</h2>
+					<p style="color: magenta"><b>MVC | SPA | PWA | ... </b></p>
+					<div class="r-hstack justify-center">
+						<a target="_blank" href="https://ctdupuis7.medium.com/spa-vs-mvc-9c9b6706a419">
+						<div data-id="box1" style="background: cyan; width: 50px; height: 50px; margin: 10px; border-radius: 5px;"></div>
+						</a>
+					</div>
+				</section>
+
+				<section>
+					<h2>Ciclo de desenvolvimento</h2>
+					<p><img src="ciclo.png" alt="ciclo" style="" class="ciclo"></p>
+					<div class="r-hstack justify-center">
+						<a target="_blank" href="https://bootcamp.uxdesign.cc/sdlc-methods-and-their-advantages-and-disadvantages-80095cea796c">
+						<div data-id="box1" style="background: cyan; width: 50px; height: 50px; margin: 10px; border-radius: 5px;"></div>
+						</a>
+						<a target="_blank" href="https://www.tutorialspoint.com/sdlc/sdlc_overview.htm">
+						<div data-id="box2" style="background: magenta; width: 50px; height: 50px; margin: 10px; border-radius: 5px;"></div>
+						</a>
+					</div>
+				</section>
+
+				<section>
+					<h2>Outras ferramentas</h2>
+					<p style="color: darkcyan">Kotlin | Python | Docker | Node.js | ...</p>
+				</section>
+
+				<section>
+					<h2>Por onde começar?</h2>
+					<div class="fragment"><img style="height: 300px; float: left;" src="Galaxy67.jpg"></img></div>
+					<div class="fragment"><img style="height: 300px; float: right;" src="oliv_001.jpg"></img></div>
+				</section>
+
+				<section>
+					<h2>Próxima sessão</h2>
+				</section>
+
+				<section>
+					<h2>obrigado</h2>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+			});
+
+		</script>
+
+	</body>
+</html>
