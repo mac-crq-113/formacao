@@ -1,0 +1,10 @@
+<import from="./components/side-menu"></import>
+<import from="./components/nav-bar"></import>
+
+<nav-bar if.bind="accountsService.userIsLoggedIn"></nav-bar>
+<side-menu if.bind="accountsService.userIsLoggedIn" ></side-menu>
+
+<main class="container-fluid">
+  <br>
+  <au-viewport default="login" fallback="missing-page"></au-viewport>
+</main>
