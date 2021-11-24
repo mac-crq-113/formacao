@@ -1,5 +1,8 @@
 $enable-shadows:true;
-$primary: rgb(0, 162, 255);
+
+$body-bg: #f9f5f3;
+$primary: rgb(0, 62, 196);
+$input-bg:white;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 

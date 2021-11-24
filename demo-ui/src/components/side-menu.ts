@@ -1,4 +1,4 @@
-import {inject} from 'aurelia';
+import { inject } from 'aurelia';
 import { Offcanvas } from 'bootstrap'
 import { AccountsService } from '../services/accounts-service';
 import { PlaylistsService } from '../services/playlists-service';
@@ -9,17 +9,16 @@ export class SideMenu {
 
     private playlists;
 
-    constructor(private accountsService: AccountsService, private playlistsService:PlaylistsService) {
+    constructor(private accountsService: AccountsService, private playlistsService: PlaylistsService) {
 
-    }
-
-    load() {
-        this.playlistsService.getAll().then(_pl=>this.playlists=_pl)
     }
 
 
     attached() {
-        new Offcanvas(this.sideMenuElem);
+        new Offcanvas(this.sideMenuElem, {});
+        this.sideMenuElem.addEventListener('show.bs.offcanvas', () => {
+            this.playlistsService.getAll().then(_pl => this.playlists = _pl)
+        })
     }
 
 

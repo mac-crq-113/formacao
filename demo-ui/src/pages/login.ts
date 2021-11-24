@@ -5,6 +5,7 @@ import { AccountsService } from "../services/accounts-service";
 export class Login {
 
     private formElem: HTMLFormElement;
+    private hasError: boolean;
 
     constructor(private accountsService: AccountsService, @IRouter private router: IRouter) {
 
@@ -12,7 +13,13 @@ export class Login {
 
     login(_evt: SubmitEvent) {
         _evt.preventDefault();
-        this.accountsService.login(this.formElem.username.value, this.formElem.password.value);
+
+        this.accountsService.login(this.formElem.username.value, this.formElem.password.value).then(_r => {
+            console.info("LOGGED IN!!!!");
+            this.router.load('home', { swapStrategy: 'sequential-remove-first' });
+        }).catch(() => {
+            this.hasError = true;
+        });
     }
 
 }

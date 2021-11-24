@@ -1,0 +1,10 @@
+<div class="card">
+    <div if.bind="compLabel" class="card-header">
+        <b>${compLabel}</b>
+    </div>
+    <div class="card-body p-0">
+        <au-slot name="body"></au-slot>
+    </div>
+
+    <au-slot name="footer"></au-slot>
+</div>

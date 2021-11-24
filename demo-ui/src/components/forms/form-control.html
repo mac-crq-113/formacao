@@ -1,6 +1,9 @@
 <div class="form-floating mb-3">
 
-    <input type.bind="compType" class="form-control" id.bind="compId" placeholder.bind="compPlaceholder" name="${compName|| compId}" value.bind="compValue" required.bind="compRequired==='true'">
+    <input type.bind="compType" class="form-control" id.bind="compId" placeholder.bind="compPlaceholder"
+        name="${compName|| compId}" value.bind="compValue" required.bind="compRequired==='true'">
     <label for.bind="compId">${compLabel}</label>
+
+    <div if.bind="compHelp" id="${compId}Help" class="form-text">${compHelp}</div>
 
 </div>

@@ -19,4 +19,7 @@ export class FormControlCustomElement {
 
     @bindable()
     private compRequired: string;
+
+    @bindable()
+    private compHelp: string;
 }

@@ -1,4 +1,4 @@
-import { HttpClient, inject, IRouter, json } from 'aurelia';
+import { HttpClient, inject, json } from 'aurelia';
 import { IAccount } from './../entities/account';
 import { FetchUtils } from './../utils/fetch-utils';
 
@@ -6,31 +6,25 @@ import { FetchUtils } from './../utils/fetch-utils';
 export class AccountsService {
 
     public userIsLoggedIn = false;
+
     private client: HttpClient;
 
-    constructor(private fetchUtils: FetchUtils, @IRouter private router: IRouter) {
+    constructor(private fetchUtils: FetchUtils) {
         this.client = this.fetchUtils.getClient();
     }
 
     async login(_user, _pwd) {
 
         const form = new FormData();
+
         form.set('username', _user);
         form.set('password', _pwd);
 
-        return this.client.post('/login', form).then(() => {
-            this.userIsLoggedIn = true;
-            this.router.load('home');
-            console.info('logged in', this.userIsLoggedIn);
-        });
+        return this.client.post('/login', form).then(() => this.userIsLoggedIn = true);
     }
 
     async logout() {
-
-        return this.client.get('/logout').then(() => {
-            this.userIsLoggedIn = false;
-            this.router.load('home');
-        });
+        return this.client.get('/logout').then(() => this.userIsLoggedIn = false);
     }
 
     async register(_account: IAccount) {
@@ -38,8 +32,7 @@ export class AccountsService {
     }
 
 
-    async checkAuth() {
-        
+    checkAuth() {
         return this.userIsLoggedIn;
     }
 

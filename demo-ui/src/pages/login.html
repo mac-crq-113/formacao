@@ -1,10 +1,31 @@
-<form submit.trigger="login($event)" method="POST" ref="formElem">
-    <div class="container">
-        <form-control comp-id="username" comp-required="true" comp-label="Username" comp-type="text"></form-control>
-        <form-control comp-id="password" comp-required="true" comp-label="Password" comp-type="password"></form-control>
+<div class="container">
 
-        <input class="btn btn-primary" type="submit" value="Entrar">
-        <span>&nbsp;ou&nbsp;</span>
-        <a class="btn btn-outline-secondary" load="create-account">Criar conta</a>
+    <br><br><br>
+    <div class="row">
+        <div class="col-4 text-end">
+            <h1>DEMO-UI</h1>
+            <h3>LOGIN</h3>
+        </div>
+
+        <form submit.trigger="login($event)" method="POST" ref="formElem" class="col-3">
+
+
+            <form-control comp-id="username" comp-required="true" comp-label="Username" comp-type="text"></form-control>
+            <form-control comp-id="password" comp-required="true" comp-label="Password" comp-type="password">
+            </form-control>
+
+            <div class="text-end">
+
+
+                <a class="btn btn-outline-secondary" click.trigger="router.load('create-account')">Criar conta</a>
+                <span>&nbsp;ou&nbsp;</span>
+                <input class="btn btn-primary" type="submit" value="Entrar">
+            </div>
+        </form>
+        <div class="col-4">
+            <div class="alert alert-danger " role="alert" if.bind="hasError">
+                Não foi possivel autenticar. Credenciais erradas!
+            </div>
+        </div>
     </div>
-</form>
+</div>

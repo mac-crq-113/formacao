@@ -1,14 +1,17 @@
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="side-menu"
-    aria-labelledby="side-menu-label" ref="sideMenuElem" >
+    aria-labelledby="side-menu-label" ref="sideMenuElem">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="side-menu-label">Menu</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <h6>Playlists</h6>
-        <ul>
-            <li><button if.bind="playlists && playlists.length>0" repeat.for="p of playlists" class="btn btn-default">${p.name}</button></li>
+        <ul class="nav flex-column">
+            <li class="nav-item" if.bind="playlists && playlists.length>0" repeat.for="p of playlists">
+                <button class="btn btn-default nav-link" data-bs-dismiss="offcanvas"
+                    load="playlists/edit/${p.id}/entries">${p.name}</button>
+            </li>
         </ul>
-        <a class="btn btn-outline-secondary w-100" load='playlists/new'>Criar Nova</a>
+        <a class="btn btn-outline-secondary w-100" load='playlists/new' data-bs-dismiss="offcanvas">Criar Nova</a>
     </div>
 </div>

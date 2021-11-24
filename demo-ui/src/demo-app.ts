@@ -1,9 +1,11 @@
 import { inject, IRouter, lifecycleHooks } from 'aurelia';
-import { Home } from './home';
-import { Create } from './pages/accounts/create';
+import { AccountCreate } from './pages/accounts/account-create';
+import { Home } from './pages/home';
 import { Login } from './pages/login';
 import { PlaylistCreate } from './pages/playlists/playlist-create';
+import { PlaylistList } from './pages/playlists/playlist-list';
 import { AccountsService } from './services/accounts-service';
+
 
 @inject()
 @lifecycleHooks()
@@ -17,7 +19,7 @@ export class DemoApp {
         },
         {
             path: 'create-account',
-            component: Create,
+            component: AccountCreate,
             title: 'Criar Conta'
         },
         {
@@ -26,14 +28,19 @@ export class DemoApp {
             title: 'Login'
         },
         {
-            path: 'playlists',
-            component: Login,
-            title: 'Login'
+            path: ['playlists', 'playlists/list'],
+            component: PlaylistList,
+            title: 'Listagem'
         },
         {
             path: 'playlists/new',
             component: PlaylistCreate,
-            title: 'Login'
+            title: 'Criar'
+        },
+        {
+            path: 'playlists/edit/:id',
+            component: PlaylistCreate,
+            title: 'Editar'
         }
     ];
 
@@ -43,21 +50,24 @@ export class DemoApp {
 
     canLoad(_vm, _params, _next, _current) {
 
-        console.info("entrou 1111111111!!!", this.accountsService.userIsLoggedIn, _next.component.name);
+        let routeToLoad = null;
 
-        let routeToLoad=null;
+        console.info("canLoad?", _next.component.name, "loggedIN?", this.accountsService.checkAuth())
 
-        switch(_next.component.name){
+        switch (_next.component.name) {
             case 'login':
-            case 'create-account':
+            case 'account-create':
                 routeToLoad = true;
                 break;
             default:
-                routeToLoad = this.accountsService.checkAuth()? 'login' : false
+                routeToLoad = this.accountsService.checkAuth() ? true : 'login'
+                break;
         }
 
+        console.info("routeToLoad", routeToLoad)
+
         return routeToLoad;
-             
+
     }
 
 }
