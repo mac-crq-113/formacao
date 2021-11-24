@@ -20,7 +20,8 @@
             <span class="btn text-danger float-start align-middle">${account.password!=password2 ? 'As
                 passwords não
                 coincidem':''}</span>
-            <input type="submit" value="Criar" class="btn btn-primary" form="create" disabled.bind="disable">
+            <input type="submit" value="Criar" class="btn btn-primary" form="create"
+                disabled.bind="account.password!=password2">
         </div>
     </ui-card>
 </div>
