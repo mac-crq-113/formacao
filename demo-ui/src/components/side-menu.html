@@ -7,9 +7,10 @@
     <div class="offcanvas-body">
         <h6>Playlists</h6>
         <ul class="nav flex-column">
-            <li class="nav-item" if.bind="playlists && playlists.length>0" repeat.for="p of playlists">
+            <li class="nav-item" if.bind="playlists && playlists.length>0" repeat.for="p of playlists"
+                title="${p.description}">
                 <button class="btn btn-default nav-link" data-bs-dismiss="offcanvas"
-                    load="playlists/edit/${p.id}/entries">${p.name}</button>
+                    load="/playlists/${p.id}/entries">${p.name}</button>
             </li>
         </ul>
         <a class="btn btn-outline-secondary w-100" load='playlists/new' data-bs-dismiss="offcanvas">Criar Nova</a>

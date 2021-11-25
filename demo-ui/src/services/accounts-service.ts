@@ -6,6 +6,7 @@ import { FetchUtils } from './../utils/fetch-utils';
 export class AccountsService {
 
     public userIsLoggedIn = false;
+    public currentUser;
 
     private client: HttpClient;
 
@@ -14,26 +15,41 @@ export class AccountsService {
     }
 
     async login(_user, _pwd) {
-
-        const form = new FormData();
-
-        form.set('username', _user);
-        form.set('password', _pwd);
-
-        return this.client.post('/login', form).then(() => this.userIsLoggedIn = true);
+        return this.client.get('/user/authenticated', { headers: { "Authorization": `Basic ${btoa(_user + ':' + _pwd)}` } }).then(FetchUtils.handleResponse).then((_u) => {
+            this.userIsLoggedIn = true
+            this.currentUser = _u;
+        });
     }
 
     async logout() {
-        return this.client.get('/logout').then(() => this.userIsLoggedIn = false);
+        return this.client.get('/logout').then((_r) => {
+            this.userIsLoggedIn = false;
+            this.currentUser = null;
+            return true;
+        });
+    }
+
+    async getUserAuthenticated() {
+        return this.client.get('/user/authenticated').then(FetchUtils.handleResponse)
     }
 
     async register(_account: IAccount) {
-        this.client.post('/accounts', json(_account));
+        this.client.post('/accounts', json(_account)).then(FetchUtils.handleResponse);
     }
 
 
-    checkAuth() {
-        return this.userIsLoggedIn;
+    async checkAuth() {
+        if (this.userIsLoggedIn) {
+            return true;
+        }
+
+        return this.getUserAuthenticated().then(_user => {
+            this.userIsLoggedIn = true
+            this.currentUser = _user;
+            return true;
+        }).catch(() => {
+            return 'login'
+        });
     }
 
 }

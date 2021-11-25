@@ -12,11 +12,12 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" load="playlists">Playlists</a>
+                    <a class="nav-link active" aria-current="page" load="/playlists">Playlists</a>
                 </li>
 
             </ul>
             <div class="d-block w-100 text-end">
+                <span class="text-light">${accountsService.currentUser.fullname} &emsp;</span>
                 <a class="btn btn-danger d-xs-block" click.trigger="logout()">Logout</a>
             </div>
         </div>

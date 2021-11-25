@@ -13,9 +13,7 @@ export class PlaylistCreate {
 
     load(_params: Params) {
         if (_params.id) {
-            return this.playlistsService.get(_params.id).then(_p => {
-                this.playlist = _p;
-            });
+            return this.playlistsService.get(_params.id).then(_p => this.playlist = _p);
         }
     }
 

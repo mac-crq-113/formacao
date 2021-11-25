@@ -1,5 +1,5 @@
-import { IPlaylist } from './../../entities/playlist';
 import { inject } from 'aurelia';
+import { IPlaylist } from './../../entities/playlist';
 import { PlaylistsService } from './../../services/playlists-service';
 
 @inject()
@@ -12,10 +12,7 @@ export class PlaylistList {
     }
 
     load() {
-        return this.pService.getAll().then(_ps => {
-            console.info("entrou!!", _ps);
-            this.playlists = _ps;
-        })
+        return this.pService.getAll().then(_ps => this.playlists = _ps)
 
     }
 }

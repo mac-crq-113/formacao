@@ -1,8 +1,9 @@
-import { inject, IRouter, lifecycleHooks } from 'aurelia';
+import { inject, lifecycleHooks } from 'aurelia';
 import { AccountCreate } from './pages/accounts/account-create';
 import { Home } from './pages/home';
 import { Login } from './pages/login';
 import { PlaylistCreate } from './pages/playlists/playlist-create';
+import { PlaylistEntriesList } from './pages/playlists/playlist-entries-list';
 import { PlaylistList } from './pages/playlists/playlist-list';
 import { AccountsService } from './services/accounts-service';
 
@@ -41,32 +42,26 @@ export class DemoApp {
             path: 'playlists/edit/:id',
             component: PlaylistCreate,
             title: 'Editar'
+        },
+        {
+            path: 'playlists/:id/entries',
+            component: PlaylistEntriesList,
+            title: 'Editar'
         }
     ];
 
-    constructor(private accountsService: AccountsService, @IRouter private appRouter: IRouter) {
+    constructor(private accountsService: AccountsService) {
 
     }
 
+
     canLoad(_vm, _params, _next, _current) {
 
-        let routeToLoad = null;
-
-        console.info("canLoad?", _next.component.name, "loggedIN?", this.accountsService.checkAuth())
-
-        switch (_next.component.name) {
-            case 'login':
-            case 'account-create':
-                routeToLoad = true;
-                break;
-            default:
-                routeToLoad = this.accountsService.checkAuth() ? true : 'login'
-                break;
+        if (['login', 'account-create'].indexOf(_next.component.name) >= 0) {
+            return true;
+        } else {
+            return this.accountsService.checkAuth();
         }
-
-        console.info("routeToLoad", routeToLoad)
-
-        return routeToLoad;
 
     }
 

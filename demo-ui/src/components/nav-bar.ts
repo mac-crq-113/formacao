@@ -14,7 +14,7 @@ export class NavBar {
 
     logout() {
         this.accountsService.logout().then(_r => {
-            this.router.load('login');
+            this.router.load('/login');
         })
     }
 }
