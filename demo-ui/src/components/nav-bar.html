@@ -1,0 +1,14 @@
+<nav class="navbar fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="col text-start" if.bind="accountsService.userIsLoggedIn" >
+            <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#side-menu"
+                aria-controls="side-menu">Menu</button>
+            <button class="btn btn"></button>
+        </div>
+        <div class="col text-end">
+
+            <button if.bind="accountsService.userIsLoggedIn" class="btn btn-outline-danger" click.trigger="logout()">Logout</button>
+            <a else class="btn btn-outline-primary" load='login'>Login</a>
+        </div>
+    </div>
+</nav>
