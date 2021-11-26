@@ -1,9 +1,12 @@
-import { inject, IRouter, lifecycleHooks } from 'aurelia';
-import { Home } from './home';
-import { Create } from './pages/accounts/create';
+import { inject, lifecycleHooks } from 'aurelia';
+import { AccountCreate } from './pages/accounts/account-create';
+import { Home } from './pages/home';
 import { Login } from './pages/login';
 import { PlaylistCreate } from './pages/playlists/playlist-create';
+import { PlaylistEntriesList } from './pages/playlists/playlist-entries-list';
+import { PlaylistList } from './pages/playlists/playlist-list';
 import { AccountsService } from './services/accounts-service';
+
 
 @inject()
 @lifecycleHooks()
@@ -17,7 +20,7 @@ export class DemoApp {
         },
         {
             path: 'create-account',
-            component: Create,
+            component: AccountCreate,
             title: 'Criar Conta'
         },
         {
@@ -26,38 +29,40 @@ export class DemoApp {
             title: 'Login'
         },
         {
-            path: 'playlists',
-            component: Login,
-            title: 'Login'
+            path: ['playlists', 'playlists/list'],
+            component: PlaylistList,
+            title: 'Listagem'
         },
         {
             path: 'playlists/new',
             component: PlaylistCreate,
-            title: 'Login'
+            title: 'Criar'
+        },
+        {
+            path: 'playlists/edit/:id',
+            component: PlaylistCreate,
+            title: 'Editar'
+        },
+        {
+            path: 'playlists/:id/entries',
+            component: PlaylistEntriesList,
+            title: 'Editar'
         }
     ];
 
-    constructor(private accountsService: AccountsService, @IRouter private appRouter: IRouter) {
+    constructor(private accountsService: AccountsService) {
 
     }
 
+
     canLoad(_vm, _params, _next, _current) {
 
-        console.info("entrou 1111111111!!!", this.accountsService.userIsLoggedIn, _next.component.name);
-
-        let routeToLoad=null;
-
-        switch(_next.component.name){
-            case 'login':
-            case 'create-account':
-                routeToLoad = true;
-                break;
-            default:
-                routeToLoad = this.accountsService.checkAuth()? 'login' : false
+        if (['login', 'account-create'].indexOf(_next.component.name) >= 0) {
+            return true;
+        } else {
+            return this.accountsService.checkAuth();
         }
 
-        return routeToLoad;
-             
     }
 
 }

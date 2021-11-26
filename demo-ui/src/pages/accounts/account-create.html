@@ -1,0 +1,27 @@
+<div class="container">
+    <ui-card comp-label="Criar conta">
+        <form au-slot="body" submit.trigger="criar($event)" method="post" autocomplete="off" id="create" class="p-3"
+            ref="formElem">
+            <form-control comp-id="fullname" comp-label="Nome Completo" comp-type="text" comp-required="true"
+                comp-value.bind="account.fullname">
+            </form-control>
+
+            <form-control comp-id="nusername" comp-label="Nome" comp-type="text" comp-required="true"
+                comp-value.bind="account.username"></form-control>
+
+            <form-control comp-id="npassword" comp-label="Password" comp-type="password" comp-required="true"
+                comp-value.bind="account.password"></form-control>
+            <form-control comp-id="password2" comp-label="Repita a password" comp-type="password" comp-required="true"
+                comp-value.bind="password2">
+            </form-control>
+
+        </form>
+        <div class="card-footer text-end" au-slot="footer">
+            <span class="btn text-danger float-start align-middle">${account.password!=password2 ? 'As
+                passwords não
+                coincidem':''}</span>
+            <input type="submit" value="Criar" class="btn btn-primary" form="create"
+                disabled.bind="account.password!=password2">
+        </div>
+    </ui-card>
+</div>

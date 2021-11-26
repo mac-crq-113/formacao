@@ -1,13 +1,28 @@
 <div class="container">
-    <form submit.trigger="criar($event)" method="post" ref="formElem">
+    <ui-card comp-label="Editar/criar playlist">
+        <form au-slot="body" submit.trigger="criar($event)" method="post" ref="formElem" id="form-playlist" class="p-3">
 
-        <form-control comp-id="username" comp-label="Nome" comp-type="text" comp-required="true"></form-control>
+            <form-control comp-id="name" comp-label="Nome" comp-type="text" comp-required="true"
+                comp-value.bind="playlist.name"></form-control>
 
-        <form-control comp-id="password" comp-label="Password" comp-type="password" comp-required="true"></form-control>
-        
-        <form-control comp-id="fullname" comp-label="Nome Completo" comp-type="text" comp-required="true"></form-control>
+            <form-control comp-id="description" comp-label="Descricao" comp-type="text" comp-required="true"
+                comp-value.bind="playlist.description"></form-control>
 
-        <input type="submit" value="Criar" class="btn btn-primary"> 
+        </form>
 
-    </form>
+
+        <div class="card-footer" au-slot="footer">
+            <div class="row">
+                <div class="col text-start">
+                    <input type="submit" value="Remover" class="btn btn-danger" if.bind="playlist.id"
+                        click.trigger="remove()">
+                </div>
+                <div class="col text-end">
+                    <input type="submit" value="${playlist.id ? 'Guardar' : 'Criar'}" class="btn btn-primary"
+                        form="form-playlist">
+                </div>
+            </div>
+        </div>
+    </ui-card>
+
 </div>

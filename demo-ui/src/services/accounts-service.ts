@@ -1,4 +1,4 @@
-import { HttpClient, inject, IRouter, json } from 'aurelia';
+import { HttpClient, inject, json } from 'aurelia';
 import { IAccount } from './../entities/account';
 import { FetchUtils } from './../utils/fetch-utils';
 
@@ -6,41 +6,50 @@ import { FetchUtils } from './../utils/fetch-utils';
 export class AccountsService {
 
     public userIsLoggedIn = false;
+    public currentUser;
+
     private client: HttpClient;
 
-    constructor(private fetchUtils: FetchUtils, @IRouter private router: IRouter) {
+    constructor(private fetchUtils: FetchUtils) {
         this.client = this.fetchUtils.getClient();
     }
 
     async login(_user, _pwd) {
-
-        const form = new FormData();
-        form.set('username', _user);
-        form.set('password', _pwd);
-
-        return this.client.post('/login', form).then(() => {
-            this.userIsLoggedIn = true;
-            this.router.load('home');
-            console.info('logged in', this.userIsLoggedIn);
+        return this.client.get('/user/authenticated', { headers: { "Authorization": `Basic ${btoa(_user + ':' + _pwd)}` } }).then(FetchUtils.handleResponse).then((_u) => {
+            this.userIsLoggedIn = true
+            this.currentUser = _u;
         });
     }
 
     async logout() {
-
-        return this.client.get('/logout').then(() => {
+        return this.client.get('/logout').then((_r) => {
             this.userIsLoggedIn = false;
-            this.router.load('home');
+            this.currentUser = null;
+            return true;
         });
     }
 
+    async getUserAuthenticated() {
+        return this.client.get('/user/authenticated').then(FetchUtils.handleResponse)
+    }
+
     async register(_account: IAccount) {
-        this.client.post('/accounts', json(_account));
+        this.client.post('/accounts', json(_account)).then(FetchUtils.handleResponse);
     }
 
 
     async checkAuth() {
-        
-        return this.userIsLoggedIn;
+        if (this.userIsLoggedIn) {
+            return true;
+        }
+
+        return this.getUserAuthenticated().then(_user => {
+            this.userIsLoggedIn = true
+            this.currentUser = _user;
+            return true;
+        }).catch(() => {
+            return 'login'
+        });
     }
 
 }

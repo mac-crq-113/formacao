@@ -51,6 +51,11 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 			} else if (body instanceof String) {
 				return body;
 			}
+			
+			//Para não mostrar o dialog de autenticação do browser
+			if(((ServletServerHttpResponse) response).getServletResponse().getStatus()==401) {
+				response.setStatusCode(HttpStatus.FORBIDDEN);
+			}
 
 			return new BackendResponse<Object>(body,
 					HttpStatus.resolve(((ServletServerHttpResponse) response).getServletResponse().getStatus()));

@@ -3,7 +3,7 @@ import * as GlobalElements from './components/global-elements';
 import { DemoApp } from './demo-app';
 
 Aurelia
-  .register(RouterConfiguration.customize({useUrlFragmentHash:true}))
+  .register(RouterConfiguration)
   .register(GlobalElements)
   .app(DemoApp)
   .start();

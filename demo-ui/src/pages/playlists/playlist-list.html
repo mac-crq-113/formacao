@@ -1,0 +1,27 @@
+<ui-card>
+    <div au-slot="body" class="table-responsive">
+        <table class="table table-striped table-hover m-0">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Nº Entradas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr repeat.for="playlist of playlists" role="button" load="/playlists/edit/${playlist.id}">
+                    <td>${playlist.name}</td>
+                    <td>${playlist.description}</td>
+                    <td>${playlist.entries.length}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-end">
+                        <button class="btn btn-outline-primary" load="/playlists/new">Adicionar</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</ui-card>
